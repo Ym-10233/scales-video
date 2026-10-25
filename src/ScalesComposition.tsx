@@ -96,29 +96,29 @@ export const ScalesComposition: React.FC = () => {
 
       {/* 场景切换音效 */}
       <Sequence from={0} durationInFrames={30}>
-        <SfxAudio src="https://remotion.media/whoosh.wav" volume={0.7} />
+        <Audio src="https://remotion.media/whoosh.wav" volume={0.7} />
       </Sequence>
       <Sequence from={scene1Duration} durationInFrames={24}>
-        <SfxAudio src="https://remotion.media/whoosh.wav" volume={0.7} />
+        <Audio src="https://remotion.media/whoosh.wav" volume={0.7} />
       </Sequence>
       <Sequence from={scene1Duration + scene2Duration} durationInFrames={24}>
-        <SfxAudio src="https://remotion.media/whoosh.wav" volume={0.7} />
+        <Audio src="https://remotion.media/whoosh.wav" volume={0.7} />
       </Sequence>
 
       {/* 音符强调音效：场景 2 每组音阶切换时 */}
       <Sequence from={scene1Duration} durationInFrames={20}>
-        <SfxAudio src="https://remotion.media/switch.wav" volume={0.9} />
+        <Audio src="https://remotion.media/switch.wav" volume={0.9} />
       </Sequence>
       <Sequence from={scene1Duration + Math.round(fps * 4.2)} durationInFrames={20}>
-        <SfxAudio src="https://remotion.media/switch.wav" volume={0.9} />
+        <Audio src="https://remotion.media/switch.wav" volume={0.9} />
       </Sequence>
       <Sequence from={scene1Duration + Math.round(fps * 8.4)} durationInFrames={20}>
-        <SfxAudio src="https://remotion.media/switch.wav" volume={0.9} />
+        <Audio src="https://remotion.media/switch.wav" volume={0.9} />
       </Sequence>
 
       {/* 场景 3 布鲁斯出现时“叮”一声 */}
       <Sequence from={scene1Duration + scene2Duration + Math.round(fps * 1.2)} durationInFrames={30}>
-        <SfxAudio src="https://remotion.media/ding.wav" volume={0.8} />
+        <Audio src="https://remotion.media/ding.wav" volume={0.8} />
       </Sequence>
 
       {/* 三幕 Series */}
