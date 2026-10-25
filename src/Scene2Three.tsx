@@ -1,4 +1,3 @@
-// Scene2Three.tsx
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
@@ -8,33 +7,23 @@ const TwelveBars: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // 三组音阶：大调 → 自然小调 → 和声小调
   const scales = [SCALES[0], SCALES[1], SCALES[2]];
-  const segmentDuration = fps * 4.2; // 每组约 4.2 秒
+  const segmentDuration = fps * 4.2;
 
-  const activeIndex = Math.min(
-    Math.floor(frame / segmentDuration),
-    scales.length - 1
-  );
+  const activeIndex = Math.min(Math.floor(frame / segmentDuration), scales.length - 1);
   const localFrame = frame - activeIndex * segmentDuration;
   const activeScale = scales[activeIndex];
 
-  // 摄像机缓慢环绕
   const cameraAngle = (frame / fps) * 0.18;
 
   return (
     <>
       <perspectiveCamera
         makeDefault
-        position={[
-          Math.sin(cameraAngle) * 6,
-          4.5,
-          Math.cos(cameraAngle) * 6,
-        ]}
+        position={[Math.sin(cameraAngle) * 6, 4.5, Math.cos(cameraAngle) * 6]}
         fov={45}
         lookAt={[0, 1, 0]}
       />
-
       <ambientLight intensity={0.45} />
       <directionalLight position={[5, 8, 5]} intensity={0.9} />
       <pointLight position={[-4, 3, -4]} intensity={0.5} color={activeScale.color} />
@@ -43,7 +32,6 @@ const TwelveBars: React.FC = () => {
         const active = activeScale.intervals.includes(semi);
         const baseHeight = active ? 2.2 : 0.35;
 
-        // 每组音阶切换时，音柱高度弹性过渡
         const enter = spring({
           frame: localFrame,
           fps,
@@ -69,7 +57,6 @@ const TwelveBars: React.FC = () => {
         );
       })}
 
-      {/* 地面网格参考 */}
       <gridHelper args={[8, 12, "#1E2A38", "#1E2A38"]} position={[0, 0, 0]} />
     </>
   );
@@ -89,8 +76,7 @@ export const Scene2Three: React.FC = () => {
         background: "radial-gradient(circle at 50% 40%, #141C26 0%, #0A0E13 80%)",
         justifyContent: "center",
         alignItems: "center",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif',
       }}
     >
       <div
@@ -110,11 +96,12 @@ export const Scene2Three: React.FC = () => {
         </div>
       </div>
 
-      {/* ThreeCanvas 必须显式传入 width / height */}
       <ThreeCanvas
         width={width}
         height={height}
         style={{ position: "absolute", inset: 0 }}
+        camera={{ fov: 45, position: [0, 4.5, 6] }}
+        gl={{ antialias: true }}
       >
         <TwelveBars />
       </ThreeCanvas>
