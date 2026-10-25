@@ -14,16 +14,12 @@ const TwelveBars: React.FC = () => {
   const localFrame = frame - activeIndex * segmentDuration;
   const activeScale = scales[activeIndex];
 
-  const cameraAngle = (frame / fps) * 0.18;
+  // 【修改点1】用旋转整个场景组来代替移动摄像机
+  const groupRotation = (frame / fps) * 0.18;
 
   return (
-    <>
-      <perspectiveCamera
-        makeDefault
-        position={[Math.sin(cameraAngle) * 6, 4.5, Math.cos(cameraAngle) * 6]}
-        fov={45}
-        lookAt={[0, 1, 0]}
-      />
+    // 【修改点2】把所有的 3D 元素包在一个 <group> 里，给它加上旋转
+    <group rotation={[0, groupRotation, 0]}>
       <ambientLight intensity={0.45} />
       <directionalLight position={[5, 8, 5]} intensity={0.9} />
       <pointLight position={[-4, 3, -4]} intensity={0.5} color={activeScale.color} />
@@ -58,7 +54,7 @@ const TwelveBars: React.FC = () => {
       })}
 
       <gridHelper args={[8, 12, "#1E2A38", "#1E2A38"]} position={[0, 0, 0]} />
-    </>
+    </group>
   );
 };
 
@@ -96,6 +92,7 @@ export const Scene2Three: React.FC = () => {
         </div>
       </div>
 
+      {/* 【修改点3】把摄像机固定在这里，不要写在里面去动态挂载 */}
       <ThreeCanvas
         width={width}
         height={height}
