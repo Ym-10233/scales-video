@@ -3,17 +3,22 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "render": "remotion render ScalesVideo out/video.mp4"
+    "render": "remotion render Scales30s out/video.mp4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
+    "@remotion/sfx": "^4.0.0",
+    "@remotion/three": "^4.0.0",
+    "@react-three/fiber": "^8.15.19",
     "remotion": "^4.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "^0.162.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.162.0",
     "typescript": "^5.5.0"
   }
 }
