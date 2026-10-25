@@ -14,7 +14,8 @@ jobs:
       - name: Install Linux dependencies for Remotion
         run: |
           sudo apt-get update
-          sudo apt-get install -y libnss3 libdbus-1-3 libatk1.0-0 libgbm-dev libasound2 libxrandr2 libatk-bridge2.0-0 libxkbcommon0
+          # 在这行末尾加上了 fonts-noto-cjk 和 fonts-noto-cjk-extra
+          sudo apt-get install -y libnss3 libdbus-1-3 libatk1.0-0 libgbm-dev libasound2 libxrandr2 libatk-bridge2.0-0 libxkbcommon0 fonts-noto-cjk fonts-noto-cjk-extra
 
       - run: npm i
 
