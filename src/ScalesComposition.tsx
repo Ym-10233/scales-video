@@ -10,7 +10,6 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { Audio as SfxAudio } from "@remotion/sfx";
 import { Scene1Keyboard } from "./Scene1Keyboard";
 import { Scene2Three } from "./Scene2Three";
 import { Scene3Compare } from "./Scene3Compare";
