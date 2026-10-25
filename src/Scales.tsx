@@ -180,6 +180,7 @@ const ScaleCard: React.FC<{ scale: Scale; index: number }> = ({
 
 const PianoRoll: React.FC<{ scale: Scale; parentEnter: number }> = ({
   scale,
+  parentEnter,
 }) => {
   const frame = useCurrentFrame();
   const keyWidth = 46;
