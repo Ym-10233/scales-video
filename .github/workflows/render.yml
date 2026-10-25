@@ -4,7 +4,7 @@ on:
 
 jobs:
   render:
-    runs-on: ubuntu-22.04 # 锁定 Ubuntu 22.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -14,7 +14,6 @@ jobs:
       - name: Install Linux dependencies for Remotion
         run: |
           sudo apt-get update
-          # 这里改回了 22.04 正确的包名 libasound2
           sudo apt-get install -y libnss3 libdbus-1-3 libatk1.0-0 libgbm-dev libasound2 libxrandr2 libatk-bridge2.0-0 libxkbcommon0
 
       - run: npm i
@@ -23,7 +22,7 @@ jobs:
         run: npx remotion browser ensure
 
       - name: Render Video
-        run: npx remotion render ScalesVideo out/video.mp4 --gl=swangle
+        run: npx remotion render Scales30s out/video.mp4 --gl=swangle --concurrency=1
 
       - uses: actions/upload-artifact@v4
         with:
